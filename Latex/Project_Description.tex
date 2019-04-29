@@ -28,12 +28,6 @@
 \restoresymbol{TXF}{openbox}
 \usepackage[T1]{fontenc}
 
-\usepackage{lscape} 		% to make certain pages in landscape mode
-\usepackage{tabularx} 		% Do tables with adjusted to textwidth
-\usepackage{booktabs}
-\usepackage{multicol}  		% Text over multiple columns
-\usepackage{float}
-
 \usepackage[demo]{graphicx}
 
 \usepackage[colorlinks = true,
@@ -41,11 +35,10 @@
             urlcolor  = blue,
             citecolor = black,
             anchorcolor = blue]{hyperref}
-\usepackage{doi}			% include DOI into Regerences
 
-\usepackage[natbibapa]{apacite} 
-\renewcommand{\doiprefix}{}
-
+\usepackage[style=authoryear,backend=bibtex]{biblatex}
+\usepackage{csquotes}
+\addbibresource{tsds.bib}
 
 \usepackage{appendix}
 \usepackage{afterpage}
@@ -57,8 +50,7 @@
 \textit{Sina Smid, Zeyu Zhao, Helge Zille, Edith Zink}
 \end{center}
 
-The influence of social media as a communication channel is increasing and with it its effect on conflict actors \citep{Zeitzoff_2017}. Terrorist groups are using platforms like Facebook, Twitter and YouTube for spreading their ideology, recruitment and communicating to their network. Especially for the rise of the Islamic State (ISIS), social media played an important role \citep{Ferrara_2017}. These illegal social networks are defined as ‘convert networks’ and pose an increasing risk to society \citep{Freeman_2017}. Recent research shows the relevance of analyzing convert networks to identify sentiments and trends, which can be used as an additional source of information in the fight of terrorism
-(\cite{Awan_2017}, \cite{Mitts_2018}).
+The influence of social media as a communication channel is increasing and with it its effect on conflict actors \parencite{Zeitzoff_2017}. Terrorist groups are using platforms like Facebook, Twitter and YouTube for spreading their ideology, recruitment and communicating to their network. Especially for the rise of the Islamic State (ISIS), social media played an important role \parencite{Ferrara_2017}. These illegal social networks are defined as ‘convert networks’ and pose an increasing risk to society \parencite{Freeman_2017}. Recent research shows the relevance of analyzing convert networks to identify sentiments and trends, which can be used as an additional source of information in the fight of terrorism \parencite{Awan_2017, Mitts_2018}.
 \bigbreak
 This paper analyses the effect of social media on the Syrian conflict using \href{https://www.kaggle.com/fifthtribe/how-isis-uses-twitter}{a kaggle dataset} which contains 3,717 pro-ISIS tweets at the peak of the conflict between 2015 and 2016.
 \bigbreak
@@ -77,8 +69,9 @@ We are planning to start our analysis with the following two steps:
 %-------------------------------------------------------
 \cleardoublepage
 \addcontentsline{toc}{section}{References}
-\bibliographystyle{apacite}
-\bibliography{tsds}
+\printbibheading
+\printbibliography
+
 %-------------------------------------------------------------------
 %-------------------------------------------------------------------
 \end{document}
