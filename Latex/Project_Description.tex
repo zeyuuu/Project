@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article} 
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[english]{babel}
+
+\usepackage{geometry}
+\geometry{a4paper} 
+\geometry{top=3cm, bottom=3cm, left=2cm, right=2cm}
+\usepackage{setspace}
+\onehalfspace
+\setlength\parindent{0pt}
+\usepackage{fancyhdr,xcolor,colortbl}
+\pagestyle{fancy}
+
+\rhead{Spring 2019}
+\lhead{Topics SDS}
+\chead{Project Description}
+
+\usepackage{savesym}
+\usepackage{amsmath}
+\savesymbol{iint}
+\savesymbol{openbox}
+\usepackage{txfonts}
+\restoresymbol{TXF}{iint}
+\restoresymbol{TXF}{openbox}
+\usepackage[T1]{fontenc}
+
+\usepackage[demo]{graphicx}
+
+\usepackage[colorlinks = true,
+            linkcolor = black,
+            urlcolor  = blue,
+            citecolor = black,
+            anchorcolor = blue]{hyperref}
+
+\usepackage[style=authoryear,backend=bibtex]{biblatex}
+\usepackage{csquotes}
+\addbibresource{tsds.bib}
+
+\usepackage{appendix}
+\usepackage{afterpage}
+
+\begin{document}
+\begin{center}
+{\huge{The Formation of ISIS' Social Media Network}}
+\bigbreak
+\textit{Sina Smid, Zeyu Zhao, Helge Zille, Edith Zink}
+\end{center}
+
+The influence of social media as a communication channel is increasing and with it its effect on conflict actors \parencite{Zeitzoff_2017}. Terrorist groups are using platforms like Facebook, Twitter and YouTube for spreading their ideology, recruitment and communicating to their network. Especially for the rise of the Islamic State (ISIS), social media played an important role \parencite{Ferrara_2017}. These illegal social networks are defined as ‘convert networks’ and pose an increasing risk to society \parencite{Freeman_2017}. Recent research shows the relevance of analyzing convert networks to identify sentiments and trends, which can be used as an additional source of information in the fight of terrorism \parencite{Awan_2017, Mitts_2018}.
+\bigbreak
+This paper analyses the effect of social media on the Syrian conflict using \href{https://www.kaggle.com/fifthtribe/how-isis-uses-twitter}{a kaggle dataset} which contains 3,717 pro-ISIS tweets at the peak of the conflict between 2015 and 2016.
+\bigbreak
+Our research interests are:
+\begin{itemize}
+\item How did the ISIS’ ideology spread between 2015 and 2016 on social media?
+\item How does this reflect/ is reflected by the development of the Syrian conflict?
+\end{itemize} 
+
+We are planning to start our analysis with the following two steps:
+\begin{enumerate}
+\item Use NLP techniques to filter categories of tweets and use these to map the network of pro-ISIS twitter users to analyze overlapping topics between users and identify ‘brokers’, who tweet on different topics. 
+\item Study the evolution of this network over time, comparing it to key events from the Syrian conflict over two years trying to understand how social media helped in spreading ISIS ideology.
+\end{enumerate}
+
+%-------------------------------------------------------
+\cleardoublepage
+\addcontentsline{toc}{section}{References}
+\printbibheading
+\printbibliography
+
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+\end{document}
