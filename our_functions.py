@@ -71,3 +71,27 @@ def language(df):
     df['language'], df['lg_value'] = zip(*predictions)
 
     return df
+
+from nltk.stem import PorterStemmer
+porter = PorterStemmer()
+
+def stem_list(list_of_words):
+    new_list = []
+    for word in list_of_words:
+        new_list.append(porter.stem(word))
+    return new_list
+
+
+import nltk
+nltk.download('wordnet')
+from nltk.corpus import wordnet as wn
+
+def lemmatize(word_list):
+    lemma_list = []
+    for word in word_list:
+        lemma = wn.morphy(word)
+        if lemma is None:
+            lemma_list.append(word)
+        else:
+            lemma_list.append(lemma)
+    return lemma_list
