@@ -76,6 +76,10 @@ from nltk.stem import PorterStemmer
 porter = PorterStemmer()
 
 def stem_list(list_of_words):
+    """ Function that computes a stemmed list of words
+    list_of_words: list with words to be stemmed
+    returns the stemmed list
+    """
     new_list = []
     for word in list_of_words:
         new_list.append(porter.stem(word))
@@ -87,6 +91,10 @@ nltk.download('wordnet')
 from nltk.corpus import wordnet as wn
 
 def lemmatize(word_list):
+    """ Function that computes a lemmatized list of words
+    list_of_words: list with words to be stemmed
+    returns the stemmed list
+    """
     lemma_list = []
     for word in word_list:
         lemma = wn.morphy(word)
@@ -95,3 +103,37 @@ def lemmatize(word_list):
         else:
             lemma_list.append(lemma)
     return lemma_list
+
+
+def flat_list(l):
+    flat_list = []
+    for sublist in l:
+        for item in sublist:
+            flat_list.append(item)
+    return flat_list
+
+
+import seaborn; seaborn.set()
+import matplotlib.pyplot as plt
+plt.style.use('ggplot') # makes the bar charts red on grey background with grid, I think it is nice
+default_red = plt.rcParams['axes.prop_cycle'].by_key()['color'][0]
+
+period1 = [datetime.date(2015, 10, 1),datetime.date(2016, 1, 31)]
+period2 = [datetime.date(2016, 2, 1),datetime.date(2016, 2, 28)]
+period3 = [datetime.date(2016, 3, 1),datetime.date(2016, 4, 30)]
+
+def plot_periods(var1, var2=None, period1=period1, period2=period2, period3=period3):
+    fig, (ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1)
+    ax1 = plt.subplot(311)
+    ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1)
+    ax1 = var2.plot(figsize=(12,8), xlim=period1)
+
+    ax2 = plt.subplot(3,1,2)
+    ax2 = var1.plot(color=default_red, figsize=(12,8), xlim=period2)
+    ax2 = var2.plot(figsize=(12,8), xlim=period2)
+    
+    ax3 = plt.subplot(3,1,3)
+    ax3 = var1.plot(color=default_red, figsize=(12,8), xlim=period3)
+    ax3 = var2.plot(figsize=(12,8), xlim=period3)
+    plt.tight_layout()
+    return fig
