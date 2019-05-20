@@ -125,15 +125,41 @@ period3 = [datetime.date(2016, 3, 1),datetime.date(2016, 4, 30)]
 def plot_periods(var1, var2=None, period1=period1, period2=period2, period3=period3):
     fig, (ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1)
     ax1 = plt.subplot(311)
-    ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1)
-    ax1 = var2.plot(figsize=(12,8), xlim=period1)
+    ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '-')
+    ax1 = var2.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = ':')
 
     ax2 = plt.subplot(3,1,2)
-    ax2 = var1.plot(color=default_red, figsize=(12,8), xlim=period2)
-    ax2 = var2.plot(figsize=(12,8), xlim=period2)
+    ax2 = var1.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = '-')
+    ax2 = var2.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = ':')
     
     ax3 = plt.subplot(3,1,3)
-    ax3 = var1.plot(color=default_red, figsize=(12,8), xlim=period3)
-    ax3 = var2.plot(figsize=(12,8), xlim=period3)
+    ax3 = var1.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = '-')
+    ax3 = var2.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = ':')
     plt.tight_layout()
     return fig
+
+def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
+    """
+    Compute c_v coherence for various number of topics
+
+    Parameters:
+    ----------
+    dictionary : Gensim dictionary
+    corpus : Gensim corpus
+    texts : List of input texts
+    limit : Max num of topics
+
+    Returns:
+    -------
+    model_list : List of LDA topic models
+    coherence_values : Coherence values corresponding to the LDA model with respective number of topics
+    """
+    coherence_values = []
+    model_list = []
+    for num_topics in range(start, limit, step):
+        model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=id2word)
+        model_list.append(model)
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
+        coherence_values.append(coherencemodel.get_coherence())
+
+    return model_list, coherence_values
