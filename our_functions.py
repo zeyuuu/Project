@@ -138,6 +138,8 @@ def plot_periods(var1, var2=None, period1=period1, period2=period2, period3=peri
     plt.tight_layout()
     return fig
 
+
+import gensim
 def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
     """
     Compute c_v coherence for various number of topics
@@ -157,9 +159,15 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
     coherence_values = []
     model_list = []
     for num_topics in range(start, limit, step):
-        model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=id2word)
+        model = gensim.models.ldamodel.LdaModel(corpus=corpus, num_topics=num_topics, id2word=id2word,
+                                               random_state=100,
+                                               update_every=1,
+                                               chunksize=100,
+                                               passes=10,
+                                               alpha='auto',
+                                               per_word_topics=True)
         model_list.append(model)
-        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='u_mass')
         coherence_values.append(coherencemodel.get_coherence())
 
     return model_list, coherence_values
