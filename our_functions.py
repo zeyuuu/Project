@@ -122,26 +122,29 @@ period1 = [datetime.date(2015, 10, 1),datetime.date(2016, 1, 31)]
 period2 = [datetime.date(2016, 2, 1),datetime.date(2016, 2, 28)]
 period3 = [datetime.date(2016, 3, 1),datetime.date(2016, 4, 30)]
 
-def plot_periods(var1, var2=None, period1=period1, period2=period2, period3=period3):
+def plot_periods(var1, var2=None, var3=None, period1=period1, period2=period2, period3=period3):
     fig, (ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1)
     ax1 = plt.subplot(311)
     ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '-')
     ax1 = var2.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = ':')
+    ax1 = var3.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '--')
 
     ax2 = plt.subplot(3,1,2)
     ax2 = var1.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = '-')
     ax2 = var2.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = ':')
+    ax2 = var3.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = '--')
     
     ax3 = plt.subplot(3,1,3)
     ax3 = var1.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = '-')
     ax3 = var2.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = ':')
+    ax3 = var3.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = '--')
     plt.tight_layout()
     return fig
 
 
 import gensim
 from gensim.models import CoherenceModel
-def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
+def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3, coherence='c_uci'):
     """
     Compute c_v coherence for various number of topics
 
@@ -164,7 +167,7 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
                                                 random_state=100, update_every=1, chunksize=100, passes=10,
                                                 alpha='auto', per_word_topics=True)
         model_list.append(model)
-        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='u_mass')
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence=coherence)
         coherence_values.append(coherencemodel.get_coherence())
 
     return model_list, coherence_values
