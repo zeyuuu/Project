@@ -122,7 +122,7 @@ period1 = [datetime.date(2015, 10, 1),datetime.date(2016, 1, 31)]
 period2 = [datetime.date(2016, 2, 1),datetime.date(2016, 2, 28)]
 period3 = [datetime.date(2016, 3, 1),datetime.date(2016, 4, 30)]
 
-def plot_periods(var1, var2=None, period1=period1, period2=period2, period3=period3):
+def plot_periods(var1, var2=None, var3=None, period1=period1, period2=period2, period3=period3):
     fig, (ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1)
     ax1 = plt.subplot(311)
     ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '-')
