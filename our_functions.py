@@ -127,14 +127,17 @@ def plot_periods(var1, var2=None, var3=None, period1=period1, period2=period2, p
     ax1 = plt.subplot(311)
     ax1 = var1.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '-')
     ax1 = var2.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = ':')
+    ax1 = var3.plot(color=default_red, figsize=(12,8), xlim=period1, linestyle = '--')
 
     ax2 = plt.subplot(3,1,2)
     ax2 = var1.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = '-')
     ax2 = var2.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = ':')
+    ax2 = var3.plot(color=default_red, figsize=(12,8), xlim=period2, linestyle = '--')
     
     ax3 = plt.subplot(3,1,3)
     ax3 = var1.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = '-')
     ax3 = var2.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = ':')
+    ax3 = var3.plot(color=default_red, figsize=(12,8), xlim=period3, linestyle = '--')
     plt.tight_layout()
     return fig
 
