@@ -144,7 +144,7 @@ def plot_periods(var1, var2=None, var3=None, period1=period1, period2=period2, p
 
 import gensim
 from gensim.models import CoherenceModel
-def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
+def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3, coherence='c_uci'):
     """
     Compute c_v coherence for various number of topics
 
@@ -167,7 +167,7 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
                                                 random_state=100, update_every=1, chunksize=100, passes=10,
                                                 alpha='auto', per_word_topics=True)
         model_list.append(model)
-        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='u_mass')
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence=coherence)
         coherence_values.append(coherencemodel.get_coherence())
 
     return model_list, coherence_values
